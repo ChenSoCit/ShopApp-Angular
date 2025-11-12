@@ -1,0 +1,66 @@
+<div class="login-container">
+  <div class="login-card">
+    <div class="login-header">
+      <h1>Đăng Nhập</h1>
+      <p>Chào mừng bạn quay trở lại!</p>
+    </div>
+
+    <form (ngSubmit)="onSubmit()" class="login-form">
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input
+          type="email"
+          id="email"
+          [value]="email()"
+          (input)="updateEmail($any($event.target).value)"
+          placeholder="Nhập email của bạn"
+          [disabled]="isLoading()"
+          required
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="password">Mật khẩu</label>
+        <input
+          type="password"
+          id="password"
+          [value]="password()"
+          (input)="updatePassword($any($event.target).value)"
+          placeholder="Nhập mật khẩu"
+          [disabled]="isLoading()"
+          required
+        />
+      </div>
+
+      @if (errorMessage()) {
+        <div class="error-message">
+          {{ errorMessage() }}
+        </div>
+      }
+
+      <button 
+        type="submit" 
+        class="login-button"
+        [disabled]="isLoading()"
+      >
+        @if (isLoading()) {
+          <span class="spinner"></span>
+          Đang xử lý...
+        } @else {
+          Đăng nhập
+        }
+      </button>
+
+      <div class="login-footer">
+        <a href="#" class="forgot-password">Quên mật khẩu?</a>
+        <p>Chưa có tài khoản? <a href="#" class="register-link">Đăng ký ngay</a></p>
+      </div>
+    </form>
+
+    <div class="demo-credentials">
+      <p><strong>Thông tin đăng nhập demo:</strong></p>
+      <p>Email: <code>admin@example.com</code></p>
+      <p>Mật khẩu: <code>admin123</code></p>
+    </div>
+  </div>
+</div>
